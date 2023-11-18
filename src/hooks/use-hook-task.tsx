@@ -40,6 +40,16 @@ export function useHookTask() {
     deleteTask(taskId);
   };
 
+  const handleToggleCompleted = (editTask: (task: Task) => void, task: Task) => {
+    editTask({
+      ...task,
+      id: task.id,
+      name: task.name,
+      content: task.content,
+      completed: !task.completed,
+    });
+  };
+
   return {
     editingTask,
     editedName,
@@ -49,5 +59,6 @@ export function useHookTask() {
     handleDeleteClick,
     setEditedName,
     setEditedContent,
+    handleToggleCompleted
   };
 }

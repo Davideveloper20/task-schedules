@@ -35,17 +35,8 @@ const TaskMain = ({ tasks, editTask, deleteTask }: TaskListProps) => {
     handleDeleteClick,
     setEditedName,
     setEditedContent,
+    handleToggleCompleted,
   } = useHookTask();
-
-  const handleToggleCompleted = (task: Task) => {
-    editTask({
-      ...task,
-      id: task.id,
-      name: task.name,
-      content: task.content,
-      completed: !task.completed,
-    });
-  };
 
   return (
     <Grid container spacing={2}>
@@ -112,7 +103,9 @@ const TaskMain = ({ tasks, editTask, deleteTask }: TaskListProps) => {
                             backgroundColor: "transparent",
                           },
                         }}
-                        onClick={() => handleToggleCompleted(task)}
+
+                        onClick={() => handleToggleCompleted(editTask, task)}
+
                       >
                         {task.completed ? "Pendiente" : "Realizada"}
                       </Button>
